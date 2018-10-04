@@ -4,7 +4,9 @@
 * Programming for Analytics courses project(DNSC 6211), GWU
 * Time: Oct. 2017
 * Instructor: Prof. Shivraj Kanungo
-* dataset: [creditdata.csv]
+* dataset: [creditdata.csv](
+        Bank-Customers-Credit-Risk-Analysis/creditdata.csv
+      )
 
 ## Instructions
 Assume I have been hired as a consultant to a bank to help them predict the credit rating for potential borrowers. Here is the description of the dataset
