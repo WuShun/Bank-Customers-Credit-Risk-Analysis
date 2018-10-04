@@ -22,8 +22,9 @@ You have been hired as a consultant to a bank to help them predict the credit ra
 borrowers. The objective of this assignment is to reinforce the workflow that we covered in
 class. Here is the description of the dataset
 
-| Variable Description |
-rating credit rating
+| Variable | Description |
+|---|
+| rating | credit rating |
 experience Job experience (in years)
 homeown home ownership
 loandurn Loan duration
