@@ -6,8 +6,8 @@
 * Instructor: Prof. Shivraj Kanungo
 * Dataset: [creditdata.csv](creditdata.csv)
 * Object: Predict the credit rating for potential borrowers
-* Scripts: [Bank Customers Credit Risk Analysis.Rmd](Bank_Customers_Credit_Risk_Analysis.Rmd)
-* Output: [Bank Customers Credit Risk Analysis.html](Bank_Customers_Credit_Risk_Analysis.html)
+* Scripts: [Bank_Customers_Credit_Risk_Analysis.Rmd](Bank_Customers_Credit_Risk_Analysis.Rmd)
+* Output: [Bank_Customers_Credit_Risk_Analysis.html](Bank_Customers_Credit_Risk_Analysis.html)
 
 ## Instructions
 Assume I have been hired as a consultant to a bank to help them predict the credit rating for potential borrowers. Here is the description of the dataset
