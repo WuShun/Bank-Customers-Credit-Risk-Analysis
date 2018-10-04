@@ -20,10 +20,10 @@
 ## Instructions
 Assume I have been hired as a consultant to a bank to help them predict the credit rating for potential borrowers. Here is the description of the dataset
 
-| Variable | 
-|---|
-| rating | 
-experience Job experience (in years)
+| **Variable** | **Description** |
+|----------|----------------------|
+| rating | credit rating|
+|experience | Job experience (in years)|||
 homeown home ownership
 loandurn Loan duration
 age Age of borrower
@@ -36,7 +36,7 @@ assts Quantum of assets
 debt Quantum of debt
 loanamount Loan amount requested
 purchprice Purchase price of item
-Part A (20 marks)
+Part A 
 (i) Use the first half of this dataset to be the training set and the second half of this dataset
 to be the test set. Your task is to predict the credit rating of an individual.
 (ii) Please ensure that the data are clean.
