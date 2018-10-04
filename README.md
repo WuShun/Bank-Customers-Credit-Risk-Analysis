@@ -10,6 +10,7 @@
 Assume I have been hired as a consultant to a bank to help them predict the credit rating for potential borrowers. Here is the description of the dataset
 
 * Varaible Description:
+
 | **Variable** | **Description** | **Type** |
 | --- | --- | --- |
 | rating | credit rating | Factor |
@@ -26,6 +27,7 @@ Assume I have been hired as a consultant to a bank to help them predict the cred
 | debt | Quantum of debt | integer |
 | loanamount | Loan amount requested | integer |
 | purchprice | Purchase price of item | integer |
+
 * Size: 289KB
 * Observations: 4446
 
