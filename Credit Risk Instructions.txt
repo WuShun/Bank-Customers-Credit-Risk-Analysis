@@ -1,1 +1,0 @@
-Data set description and data dictionary available on Page 208 of Building Better Models with JMP Pro textbook.
