@@ -17,14 +17,12 @@
 * Selected best model and obtained prediction formulas;
 * Contributed to final presentation and report writing.
 
-Instructions
-You have been hired as a consultant to a bank to help them predict the credit rating for potential
-borrowers. The objective of this assignment is to reinforce the workflow that we covered in
-class. Here is the description of the dataset
+## Instructions
+Assume I have been hired as a consultant to a bank to help them predict the credit rating for potential borrowers. Here is the description of the dataset
 
-| Variable | Description |
+| Variable | 
 |---|
-| rating | credit rating |
+| rating | 
 experience Job experience (in years)
 homeown home ownership
 loandurn Loan duration
