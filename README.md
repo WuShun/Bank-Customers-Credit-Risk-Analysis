@@ -10,10 +10,10 @@
 Assume I have been hired as a consultant to a bank to help them predict the credit rating for potential borrowers. Here is the description of the dataset
 
 * Varaible Description:
-| **Variable** | **Description** | **Type**|
-|----------|----------------------|------|
-| rating | credit rating| Factor |
-| experience | Job experience (in years)| integer |
+| **Variable** | **Description** | **Type** |
+|--------------|-----------------|---------|
+| rating | credit rating | Factor |
+| experience | Job experience (in years) | integer |
 | homeown | home ownership | Factor |
 | loandurn | Loan duration | integer |
 | age | Age of borrower | integer |
@@ -31,7 +31,9 @@ Assume I have been hired as a consultant to a bank to help them predict the cred
 
 ## Data Preprocess 
 (i) Imported the data file
+
 (ii) Viewed variables and type
+
 (iii) Transfered factor type varaible to numeric type
 (iv) Converted original values 2 and 1 for rating to 1 and 0
 (v) Make ensure that the data are clean:
