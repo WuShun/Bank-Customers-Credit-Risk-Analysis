@@ -50,32 +50,24 @@ to be the test set.
 ## Data Exploration
 (i) Made descriptive statistical exploration for each variable using TABLE and SUMMARY function
 
-(ii) Used ggplot2 package to plot discrete~discrete variables by bar and plot continuous~discrete variables by geom_point
+(ii) Used ggplot2 package to plot discrete ~ discrete variables by bar and plot continuous ~ discrete variables by geom_point
 
 (iii) There is nothing to inform me about a good predictor from these descriptives
 
 ## Data Analysis
-* Logistic Regression
+(i) Logistic Regression
 
-(i) Made a predictive model using logistic regression.
+* Made a predictive model using logistic regression.
+* According to summary of the model, all variables, except loandurn (loan duration) and age are significant
+* Applied the function PREDICT to the model along with test dataset.
+* How good our model is? Used IFELSE function so that if the predicted probability bigger than 0.5, the value will be replaced with 1, or else be replaced with 0.
+* Calculated misclassificationerror which means the probability of wrong prediction
+* Accuracy equals to 1 minus misclassificationerror, which is 0.792622582096266
 
-(ii) According to summary of the model, all variables, except loandurn (loan duration) and age are significant
-
-(iii) Applied the function PREDICT to the model along with test dataset.
-
-(iv) How good our model is? Used IFELSE function so that if the predicted probability bigger than 0.5, the value will be replaced with 1, or else be replaced with 0.
-
-(v) Calculated misclassificationerror which means the probability of wrong prediction
-
-(vi) Accuracy equals to 1 minus misclassificationerror, which is 0.792622582096266
-
-* Decision Tree
-
-(vii) Made a predictive model using a decision tree
-
-(viii) This tree has splited 8 times. Each split is on one certain variable which has the biggest influcence on classification. For each branch, the "good" or "bad" is decided by the majority of this node; the fraction stands for the number of this kind majority; the percentage stands for the ratio of the number of this node to the overall number of this dataset.
-
-(ix) The probability of all good rating customer is 1595/2223 = 71.75%. The biggest probability of good credit rating customers among all nodes is 911/1021 = 89.23% for those who don't have existed records and job experience more than 1.5 years and level of income higher than 102.
+(ii) Decision Tree
+* Made a predictive model using a decision tree
+* This tree has splited 8 times. Each split is on one certain variable which has the biggest influcence on classification. For each branch, the "good" or "bad" is decided by the majority of this node; the fraction stands for the number of this kind majority; the percentage stands for the ratio of the number of this node to the overall number of this dataset.
+* The probability of all good rating customer is 1595/2223 = 71.75%. The biggest probability of good credit rating customers among all nodes is 911/1021 = 89.23% for those who don't have existed records and job experience more than 1.5 years and level of income higher than 102.
 
 ## Model Comparison
 (i) Used ROC curve and AUC method to compare two model
