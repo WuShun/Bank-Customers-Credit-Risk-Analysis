@@ -23,20 +23,21 @@ Assume I have been hired as a consultant to a bank to help them predict the cred
 | **Variable** | **Description** |
 |----------|----------------------|
 | rating | credit rating|
-|experience | Job experience (in years)|||
-homeown home ownership
-loandurn Loan duration
-age Age of borrower
-mstat Marital status
-rcds Existence of records
-jtype Job type
-explvl Quantum of expenses
-inc Level of income
-assts Quantum of assets
-debt Quantum of debt
-loanamount Loan amount requested
-purchprice Purchase price of item
-Part A 
+| experience | Job experience (in years)|
+| homeown | home ownership |
+| loandurn | Loan duration |
+| age | Age of borrower |
+| mstat | Marital status |
+| rcds | Existence of records |
+| jtype | Job type |
+| explvl | Quantum of expenses |
+| inc | Level of income |
+| assts | Quantum of assets |
+| debt | Quantum of debt |
+| loanamount | Loan amount requested |
+| purchprice | Purchase price of item |
+
+## Preprocess Data
 (i) Use the first half of this dataset to be the training set and the second half of this dataset
 to be the test set. Your task is to predict the credit rating of an individual.
 (ii) Please ensure that the data are clean.
