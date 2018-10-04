@@ -11,7 +11,7 @@ Assume I have been hired as a consultant to a bank to help them predict the cred
 
 * Varaible Description:
 | **Variable** | **Description** | **Type** |
-|--------------|-----------------|---------|
+| --- | --- | --- |
 | rating | credit rating | Factor |
 | experience | Job experience (in years) | integer |
 | homeown | home ownership | Factor |
