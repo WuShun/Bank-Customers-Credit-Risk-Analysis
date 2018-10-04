@@ -4,7 +4,7 @@
 * Programming for Analytics courses project(DNSC 6211), GWU
 * Time: Oct. 2017
 * Instructor: Prof. Shivraj Kanungo
-* Dataset: [creditdata.csv](README.md)
+* Dataset: [creditdata.csv](creditdata.csv)
 * Object: Predict the credit rating for potential borrowers
 * Scripts: Bank Customers Credit Risk Analysis.Rmd   
 * Output: Bank Customers Credit Risk Analysis.html
