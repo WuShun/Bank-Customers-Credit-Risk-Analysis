@@ -1,0 +1,210 @@
+---
+title: "Bank Customers Credit Risk Analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+### Data Propocess
+
+```{r}
+mydf <- read.csv("/Users/yx921121/Documents/GWU/2017Fall/Programming/Assignment/Logistics Regression/creditdata.csv")  #input data
+```
+
+```{r}
+sum(is.na(mydf))        #check if there are null
+```
+
+```{r}
+mydf[mydf==""]  <- NA    #check if there are blank space so that make sure the data is clean
+sum(is.na(mydf))
+sum(!complete.cases(mydf))
+```
+```{r}
+sapply(mydf, function(x) sum(is.na(x)))
+```
+
+```{r}
+mydf$rating <- as.numeric(mydf$rating)
+mydf$homeown <- as.numeric(mydf$homeown)
+mydf$mstat <- as.numeric(mydf$mstat)
+mydf$jtype <- as.numeric(mydf$jtype)
+```
+
+```{r}
+head(mydf$rating)
+```
+```{r}
+#Convert these values to 0 and 1
+mydf$rating <- ifelse(mydf$rating == 1, 0, 1)
+```
+
+```{r}
+head(mydf$rating)
+```
+
+```{r}
+#Variables and their types
+sapply(mydf, class)
+```
+```{r}
+nrow(mydf)    #view how many rows
+```
+
+```{r}
+mydf_train <- mydf[c(1:2223),]   #subset the first half of data as the training set
+mydf_test <- mydf[c(2224:4446),]       #subset the second half of data as the test set
+```
+
+```{r}
+str(mydf_train)    #to view variables and types
+```
+
+### Data Exploration
+
+```{r} 
+#make descriptive stats
+table(mydf_train$rating)
+table(mydf_train$homeown)
+table(mydf_train$mstat)
+table(mydf_train$rcds)
+table(mydf_train$jtype)
+
+summary(mydf_train$experience)
+summary(mydf_train$loandurn)
+summary(mydf_train$age)
+summary(mydf_train$explvl)
+summary(mydf_train$inc)
+summary(mydf_train$assts)
+summary(mydf_train$debt)
+summary(mydf_train$loanamount)
+summary(mydf_train$purchprice)
+
+```
+
+```{r}
+library("ggplot2")
+```
+
+```{r}
+#plot discrete~discrete variables using bar
+ggplot(mydf_train, aes(homeown)) + geom_bar(aes(fill=factor(rating)))
+ggplot(mydf_train, aes(mstat)) + geom_bar(aes(fill=factor(rating)))
+ggplot(mydf_train, aes(rcds)) + geom_bar(aes(fill=factor(rating)))
+ggplot(mydf_train, aes(jtype)) + geom_bar(aes(fill=factor(rating)))
+
+#plot continuous~discrete varibales using boxplot
+ggplot(mydf_train, aes(y=experience, x=rating,fill=rating, group=rating)) + geom_boxplot()
+ggplot(mydf_train, aes(y=loandurn, x=rating,fill=rating, group=rating)) + geom_boxplot()
+ggplot(mydf_train, aes(y=age, x=rating,fill=rating, group=rating)) + geom_boxplot()
+ggplot(mydf_train, aes(y=explvl, x=rating,fill=rating, group=rating)) + geom_boxplot()
+ggplot(mydf_train, aes(y=inc, x=rating,fill=rating, group=rating)) + geom_boxplot()
+ggplot(mydf_train, aes(y=assts, x=rating,fill=rating, group=rating)) + geom_boxplot()
+ggplot(mydf_train, aes(y=debt, x=rating,fill=rating, group=rating)) + geom_boxplot()
+ggplot(mydf_train, aes(y=loanamount, x=rating,fill=rating, group=rating)) + geom_boxplot()
+ggplot(mydf_train, aes(y=purchprice, x=rating,fill=rating, group=rating)) + geom_boxplot()
+```
+
+#### There is nothing to inform me about a good predictor from these descriptives.
+
+### Data Analysis
+
+```{r}
+library(dplyr)
+str(mydf_train)    #View the training dataset
+```
+
+```{r}
+model.logistic <- glm(formula = rating ~., family =binomial(link='logit'), data = mydf_train)   #fit a logistic regression model
+summary(model.logistic)   #view the results contained in the model
+```
+
+####According to summery of the model, all variables, except loandurn (loan duration) and age are significant
+
+```{r}
+model.logistic.fitted <- predict(model.logistic,mydf_test,type='response')    #apply the function predict to the model along with test dataset.
+```
+
+```{r}
+# How good our model is
+model.logistic.fitted <- ifelse(model.logistic.fitted > 0.5,1,0)   #if the predicted probability bigger than 0.5, the value will be replaced with 1, or else be replaced with 0.
+misClassificationError <- mean(model.logistic.fitted != mydf_test$rating)  #calculate misclassificationerror which means the probability of wrong prediction
+print(paste('Accuracy',1-misClassificationError))     #print the probability of accuracy
+```
+
+```{r}
+library(rpart)
+library(rpart.plot)
+```
+
+```{r}
+#build up tree model and show the plot
+model.tree <- rpart(rating ~ ., mydf_train, method = "class")
+rpart.plot(model.tree, type=1, extra = 102)
+```
+
+####This tree has splited 8 times. Each split is on one certain varible which has the biggest influcence on classification. For each branch, the "good" or "bad" is decided by the majority of this node; the fraction stands for the number of this kind majority; the percentage stands for the ratio of the number of this node to the overall number of this dataset.
+####The probability of all good rating customer is 1595/2223=71.75%. The biggest probability of good credit rating customers among all nodes is 911/1021 = 89.23% for those who don't have existed records and job experience more than 1.5 years and level of income higher than 102.
+
+##Part C
+
+###(i) Please help your client understand which model is better for predicting purposes.
+
+```{r}
+library(ROCR)
+#create a variable p assigned by returns of function predict
+p <- predict(model.logistic, mydf_test, type="response")  
+
+#create a variable pr assigned by returns of function prediction
+#prediction function is to transform p and rating into a format
+pr <- prediction(p, mydf_test$rating)      
+
+# Y-axis = Sensitivity
+# Sensitivity - the proportion of true positives 
+# X-axis = 1 - Specificity
+# 1 - Specificity - the proportion of false positive
+prf <- performance(pr, measure = "tpr", x.measure = "fpr")
+plot(prf)
+abline(a=0, b= 1)
+
+# The area under the ROC curve ( AUC ) is a measure of how well a parameter 
+auc <- performance(pr, measure = "auc")
+auc <- auc@y.values[[1]]
+auc
+
+
+```
+
+```{r}
+probs <- predict(model.tree, mydf_test, type = "prob")[,2]
+# Create a prediction object: pred
+pred <- prediction(probs, mydf_test$rating)
+
+# Make a performance object: perf
+perf <- performance(pred, "tpr" , "fpr")
+
+# Plot this curve
+plot(perf)
+abline(a=0, b= 1)
+
+auc <- performance(pred, measure = "auc")
+auc <- auc@y.values[[1]]
+auc
+```
+
+####The logistics regression model is better, because the auc value of logistics regression model is bigger than that of tree model.
+
+###(ii) Find a way to explain sensitivity, specificity and auc in the ROC to your client (in less than 250 words).
+
+####The sensitivity is the probability of true positive. The concept of true positive means the model we use predicts correctly customer "good" given that the customer is actually "good".
+####The specificity is the probability of true negative. The concept of true negative means the model we use predicts correctly customer "bad" given that the customer is actually "bad".
+####The concept auc in the ROC means the "area under curve", indicating whether the model is better than random 50/50 model. Because the random 50/50 model has a auc 0.5. The greater auc is, the better model fits. So as long as auc > 0.5, the model is better than random 50/50 model.
+
+###(iii) Provide a brief write-up of your findings. How will you present these findings to your clients in less than 250 words?
+
+####In this dataset, there are 4446 observations of 14 variables. When we use logistics regression model to predict customer credit rating,  there are some variables are not very related to our dependent variable rating, like loandurn and age. According to summery of the model, experience, homeownowner, mstatmarried, mstatsingle, mstatwidow, rcdsyes_rec, jtypefreelance, jtypeothers, jtypepartime, explvl, inc, assts, debt, loanamout and purchprice are important for this model. It means that the fluctuate of these variables leads to rating varies a lot. The logistics regression model predicts 79.3% accuracy.
+####The decision tree model also has the capability to predict dependent varaible. The probability of all good rating customer is 71.75%. The biggest probability of good credit rating customers among all nodes is 89.23% for those who don't have existed records and job experience more than 1.5 years and level of income higher than 102.
+####Compared with the decision tree model, the logistics regression model for this dataset is more credible by ROC curve(AUC).
