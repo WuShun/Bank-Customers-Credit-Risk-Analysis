@@ -122,7 +122,7 @@ model.logistic <- glm(formula = rating ~., family =binomial(link='logit'), data 
 summary(model.logistic)   #view the results contained in the model
 ```
 
-####According to summery of the model, all variables, except loandurn (loan duration) and age are significant
+#### According to summery of the model, all variables, except loandurn (loan duration) and age are significant
 
 ```{r}
 model.logistic.fitted <- predict(model.logistic,mydf_test,type='response')    #apply the function predict to the model along with test dataset.
@@ -146,12 +146,12 @@ model.tree <- rpart(rating ~ ., mydf_train, method = "class")
 rpart.plot(model.tree, type=1, extra = 102)
 ```
 
-####This tree has splited 8 times. Each split is on one certain varible which has the biggest influcence on classification. For each branch, the "good" or "bad" is decided by the majority of this node; the fraction stands for the number of this kind majority; the percentage stands for the ratio of the number of this node to the overall number of this dataset.
-####The probability of all good rating customer is 1595/2223=71.75%. The biggest probability of good credit rating customers among all nodes is 911/1021 = 89.23% for those who don't have existed records and job experience more than 1.5 years and level of income higher than 102.
+#### This tree has splited 8 times. Each split is on one certain varible which has the biggest influcence on classification. For each branch, the "good" or "bad" is decided by the majority of this node; the fraction stands for the number of this kind majority; the percentage stands for the ratio of the number of this node to the overall number of this dataset.
+#### The probability of all good rating customer is 1595/2223=71.75%. The biggest probability of good credit rating customers among all nodes is 911/1021 = 89.23% for those who don't have existed records and job experience more than 1.5 years and level of income higher than 102.
 
-##Part C
+## Part C
 
-###(i) Please help your client understand which model is better for predicting purposes.
+### (i) Please help your client understand which model is better for predicting purposes.
 
 ```{r}
 library(ROCR)
@@ -195,16 +195,16 @@ auc <- auc@y.values[[1]]
 auc
 ```
 
-####The logistics regression model is better, because the auc value of logistics regression model is bigger than that of tree model.
+#### The logistics regression model is better, because the auc value of logistics regression model is bigger than that of tree model.
 
-###(ii) Find a way to explain sensitivity, specificity and auc in the ROC to your client (in less than 250 words).
+### (ii) Find a way to explain sensitivity, specificity and auc in the ROC to your client (in less than 250 words).
 
-####The sensitivity is the probability of true positive. The concept of true positive means the model we use predicts correctly customer "good" given that the customer is actually "good".
-####The specificity is the probability of true negative. The concept of true negative means the model we use predicts correctly customer "bad" given that the customer is actually "bad".
-####The concept auc in the ROC means the "area under curve", indicating whether the model is better than random 50/50 model. Because the random 50/50 model has a auc 0.5. The greater auc is, the better model fits. So as long as auc > 0.5, the model is better than random 50/50 model.
+#### The sensitivity is the probability of true positive. The concept of true positive means the model we use predicts correctly customer "good" given that the customer is actually "good".
+#### The specificity is the probability of true negative. The concept of true negative means the model we use predicts correctly customer "bad" given that the customer is actually "bad".
+#### The concept auc in the ROC means the "area under curve", indicating whether the model is better than random 50/50 model. Because the random 50/50 model has a auc 0.5. The greater auc is, the better model fits. So as long as auc > 0.5, the model is better than random 50/50 model.
 
-###(iii) Provide a brief write-up of your findings. How will you present these findings to your clients in less than 250 words?
+### (iii) Provide a brief write-up of your findings. How will you present these findings to your clients in less than 250 words?
 
-####In this dataset, there are 4446 observations of 14 variables. When we use logistics regression model to predict customer credit rating,  there are some variables are not very related to our dependent variable rating, like loandurn and age. According to summery of the model, experience, homeownowner, mstatmarried, mstatsingle, mstatwidow, rcdsyes_rec, jtypefreelance, jtypeothers, jtypepartime, explvl, inc, assts, debt, loanamout and purchprice are important for this model. It means that the fluctuate of these variables leads to rating varies a lot. The logistics regression model predicts 79.3% accuracy.
-####The decision tree model also has the capability to predict dependent varaible. The probability of all good rating customer is 71.75%. The biggest probability of good credit rating customers among all nodes is 89.23% for those who don't have existed records and job experience more than 1.5 years and level of income higher than 102.
-####Compared with the decision tree model, the logistics regression model for this dataset is more credible by ROC curve(AUC).
+#### In this dataset, there are 4446 observations of 14 variables. When we use logistics regression model to predict customer credit rating,  there are some variables are not very related to our dependent variable rating, like loandurn and age. According to summery of the model, experience, homeownowner, mstatmarried, mstatsingle, mstatwidow, rcdsyes_rec, jtypefreelance, jtypeothers, jtypepartime, explvl, inc, assts, debt, loanamout and purchprice are important for this model. It means that the fluctuate of these variables leads to rating varies a lot. The logistics regression model predicts 79.3% accuracy.
+#### The decision tree model also has the capability to predict dependent varaible. The probability of all good rating customer is 71.75%. The biggest probability of good credit rating customers among all nodes is 89.23% for those who don't have existed records and job experience more than 1.5 years and level of income higher than 102.
+#### Compared with the decision tree model, the logistics regression model for this dataset is more credible by ROC curve(AUC).
