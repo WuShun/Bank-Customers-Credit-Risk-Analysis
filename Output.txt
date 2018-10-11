@@ -1,0 +1,116 @@
+[1] 0
+[1] 0
+[1] 0
+    rating experience    homeown   loandurn        age      mstat       rcds      jtype     explvl        inc      assts       debt 
+         0          0          0          0          0          0          0          0          0          0          0          0 
+loanamount purchprice 
+         0          0 
+[1] 2 2 1 2 2 2
+[1] 1 1 0 1 1 1
+    rating experience    homeown   loandurn        age      mstat       rcds      jtype     explvl        inc      assts       debt 
+ "numeric"  "integer"  "numeric"  "integer"  "integer"  "numeric"   "factor"  "numeric"  "integer"  "integer"  "integer"  "integer" 
+loanamount purchprice 
+ "integer"  "integer" 
+[1] 4446
+'data.frame':	2223 obs. of  14 variables:
+ $ rating    : num  1 1 0 1 1 1 1 1 1 0 ...
+ $ experience: int  9 17 10 0 0 1 29 9 0 0 ...
+ $ homeown   : num  6 6 3 6 6 3 3 4 3 4 ...
+ $ loandurn  : int  60 60 36 60 36 60 60 12 60 48 ...
+ $ age       : int  30 58 46 24 26 36 44 27 32 41 ...
+ $ mstat     : num  2 5 2 4 4 2 2 4 2 2 ...
+ $ rcds      : Factor w/ 2 levels "no_rec","yes_rec": 1 1 2 1 1 1 1 1 1 1 ...
+ $ jtype     : num  2 1 2 1 1 1 1 1 2 4 ...
+ $ explvl    : int  73 48 90 63 46 75 75 35 90 90 ...
+ $ inc       : int  129 131 200 182 107 214 125 80 107 80 ...
+ $ assts     : int  0 0 3000 2500 0 3500 10000 0 15000 0 ...
+ $ debt      : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ loanamount: int  800 1000 2000 900 310 650 1600 200 1200 1200 ...
+ $ purchprice: int  846 1658 2985 1325 910 1645 1800 1093 1957 1468 ...
+
+   0    1 
+ 628 1595 
+
+   1    2    3    4    5    6 
+   9  160 1072  362  104  516 
+
+   1    2    3    4    5 
+  20 1647   59  463   34 
+
+ no_rec yes_rec 
+   1896     327 
+
+   1    2    3    4 
+1413  535   72  203 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.000   2.000   5.000   7.853  12.000  43.000 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   6.00   36.00   48.00   46.36   60.00   60.00 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  18.00   28.00   35.00   37.07   45.00   68.00 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  35.00   45.00   60.00   60.91   75.00  173.00 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    1.0    93.0   130.0   148.6   180.0   959.0 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+      0       0    3000    5467    6000  300000 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    0.0     0.0     0.0   353.8     0.0 30000.0 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    100     700    1000    1028    1300    5000 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    105    1111    1386    1440    1683    8800 
+'data.frame':	2223 obs. of  14 variables:
+ $ rating    : num  1 1 0 1 1 1 1 1 1 0 ...
+ $ experience: int  9 17 10 0 0 1 29 9 0 0 ...
+ $ homeown   : num  6 6 3 6 6 3 3 4 3 4 ...
+ $ loandurn  : int  60 60 36 60 36 60 60 12 60 48 ...
+ $ age       : int  30 58 46 24 26 36 44 27 32 41 ...
+ $ mstat     : num  2 5 2 4 4 2 2 4 2 2 ...
+ $ rcds      : Factor w/ 2 levels "no_rec","yes_rec": 1 1 2 1 1 1 1 1 1 1 ...
+ $ jtype     : num  2 1 2 1 1 1 1 1 2 4 ...
+ $ explvl    : int  73 48 90 63 46 75 75 35 90 90 ...
+ $ inc       : int  129 131 200 182 107 214 125 80 107 80 ...
+ $ assts     : int  0 0 3000 2500 0 3500 10000 0 15000 0 ...
+ $ debt      : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ loanamount: int  800 1000 2000 900 310 650 1600 200 1200 1200 ...
+ $ purchprice: int  846 1658 2985 1325 910 1645 1800 1093 1957 1468 ...
+
+Call:
+glm(formula = rating ~ ., family = binomial(link = "logit"), 
+    data = mydf_train)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-3.1920  -0.7016   0.4351   0.7241   2.3941  
+
+Coefficients:
+              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  3.127e+00  5.234e-01   5.975 2.30e-09 ***
+experience   8.022e-02  1.011e-02   7.933 2.14e-15 ***
+homeown     -1.058e-01  4.275e-02  -2.474 0.013344 *  
+loandurn    -7.717e-04  4.719e-03  -0.164 0.870096    
+age         -1.004e-02  6.237e-03  -1.610 0.107385    
+mstat       -1.667e-01  7.844e-02  -2.125 0.033568 *  
+rcdsyes_rec -1.914e+00  1.493e-01 -12.824  < 2e-16 ***
+jtype       -4.429e-01  5.615e-02  -7.886 3.11e-15 ***
+explvl      -9.985e-03  3.521e-03  -2.836 0.004566 ** 
+inc          5.746e-03  8.616e-04   6.669 2.57e-11 ***
+assts        3.452e-05  9.655e-06   3.576 0.000349 ***
+debt        -1.708e-04  4.214e-05  -4.054 5.03e-05 ***
+loanamount  -2.057e-03  2.436e-04  -8.443  < 2e-16 ***
+purchprice   1.039e-03  1.859e-04   5.592 2.25e-08 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 2646.7  on 2222  degrees of freedom
+Residual deviance: 2041.9  on 2209  degrees of freedom
+AIC: 2069.9
+
+Number of Fisher Scoring iterations: 5
+
+[1] "Accuracy 0.792622582096266"
+[1] 0.8309551
+[1] 0.7518058
